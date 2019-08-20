@@ -54,19 +54,19 @@ noremap - Nzz
 noremap <LEADER><CR> :nohlsearch<CR>
 
 call plug#begin('~/.vim/plugged')
-
+" +++主题美化+++
 Plug 'vim-airline/vim-airline' 
 Plug 'rakr/vim-one'
-
+" +++文件树装图+++
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
-
+" +++代码补全+++
 Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-jedi' "python
 Plug 'ncm2/ncm2-pyclang' "C/C++
 Plug 'ncm2/ncm2-go' "golang
 Plug 'ncm2/ncm2-path' "Path
-
+" +++依赖+++
 Plug 'roxma/nvim-yarp'
 call plug#end()
 
@@ -115,3 +115,23 @@ set completeopt=noinsert,menuone,noselect
 let ncm2#popup_delay = 5
 let g:ncm2_jedi#python_version = 3
 "用pip3安装一下pynvim和jeid
+
+""""""""""""""""""""""
+    "Quickly Run
+    """"""""""""""""""""""
+    map <F5> :call CompileRunGcc()<CR>
+    func! CompileRunGcc()
+        exec "w"
+        if &filetype == 'c'
+            exec "!g++ % -o %<"
+            exec "!time ./%<"
+        elseif &filetype == 'cpp'
+            exec "!g++ % -o %<"
+            exec "!time ./%<"
+        elseif &filetype == 'python'
+            exec "!time python3 %"
+        elseif &filetype == 'go'
+    "        exec "!go build %<"
+            exec "!time go run %"
+        endif
+    endfunc
