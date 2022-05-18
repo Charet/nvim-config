@@ -4,6 +4,7 @@
 * 我的vim配置是为了写Python/Golang/C/C++
 * 按住F5可以快速运行正在编辑的程序文件
 * LEADER为空格键
+* 插件安装使用:PlugInstall
 
 # 自定义快捷键
 
